@@ -4,6 +4,8 @@ package com.User_and_Order_Management_Service.Entites;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
 public class Address {
@@ -19,6 +21,6 @@ public class Address {
     private String country;
 
     @OneToMany(mappedBy = "address")
-    private Orders order;
+    private List<Orders> order;
 
 }

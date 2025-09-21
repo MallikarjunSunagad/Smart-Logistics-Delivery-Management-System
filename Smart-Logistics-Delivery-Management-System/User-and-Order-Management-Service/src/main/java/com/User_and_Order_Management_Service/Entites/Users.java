@@ -3,8 +3,6 @@ package com.User_and_Order_Management_Service.Entites;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
-import org.antlr.v4.runtime.misc.NotNull;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
