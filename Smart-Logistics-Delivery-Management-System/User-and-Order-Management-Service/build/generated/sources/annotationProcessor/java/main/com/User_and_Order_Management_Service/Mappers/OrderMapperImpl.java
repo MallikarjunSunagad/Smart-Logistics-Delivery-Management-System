@@ -1,0 +1,171 @@
+package com.User_and_Order_Management_Service.Mappers;
+
+import com.User_and_Order_Management_Service.Entites.Address;
+import com.User_and_Order_Management_Service.Entites.Orders;
+import com.User_and_Order_Management_Service.Entites.Products;
+import com.User_and_Order_Management_Service.Entites.Users;
+import com.User_and_Order_Management_Service.RequestDtos.AddressDto;
+import com.User_and_Order_Management_Service.RequestDtos.OrderRequestDto;
+import com.User_and_Order_Management_Service.ResponseDtos.OrderResponseDto;
+import com.User_and_Order_Management_Service.ResponseDtos.ProductResponseDto;
+import com.User_and_Order_Management_Service.ResponseDtos.UserResponseDto;
+import javax.annotation.processing.Generated;
+import org.springframework.stereotype.Component;
+
+@Generated(
+    value = "org.mapstruct.ap.MappingProcessor",
+    date = "2025-10-01T18:53:12+0530",
+    comments = "version: 1.5.5.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.14.3.jar, environment: Java 22.0.2 (Oracle Corporation)"
+)
+@Component
+public class OrderMapperImpl implements OrderMapper {
+
+    @Override
+    public Orders toEntity(OrderRequestDto orderRequestDto) {
+        if ( orderRequestDto == null ) {
+            return null;
+        }
+
+        Orders orders = new Orders();
+
+        orders.setProduct( orderRequestDtoToProducts( orderRequestDto ) );
+        orders.setUser( orderRequestDtoToUsers( orderRequestDto ) );
+        orders.setQuantity( orderRequestDto.getQuantity() );
+        orders.setAddress( addressDtoToAddress( orderRequestDto.getAddress() ) );
+
+        return orders;
+    }
+
+    @Override
+    public OrderResponseDto toDto(Orders orders) {
+        if ( orders == null ) {
+            return null;
+        }
+
+        OrderResponseDto orderResponseDto = new OrderResponseDto();
+
+        orderResponseDto.setProduct( productsToProductResponseDto( orders.getProduct() ) );
+        orderResponseDto.setUserDetails( usersToUserResponseDto( orders.getUser() ) );
+        orderResponseDto.setQuantity( orders.getQuantity() );
+        orderResponseDto.setAddress( addressToAddressDto( orders.getAddress() ) );
+        orderResponseDto.setCreatedAt( orders.getCreatedAt() );
+
+        return orderResponseDto;
+    }
+
+    @Override
+    public void updateEntityFromDto(OrderRequestDto orderRequestDto, Orders orders) {
+        if ( orderRequestDto == null ) {
+            return;
+        }
+
+        orders.setQuantity( orderRequestDto.getQuantity() );
+        if ( orderRequestDto.getAddress() != null ) {
+            if ( orders.getAddress() == null ) {
+                orders.setAddress( new Address() );
+            }
+            addressDtoToAddress1( orderRequestDto.getAddress(), orders.getAddress() );
+        }
+        else {
+            orders.setAddress( null );
+        }
+    }
+
+    protected Products orderRequestDtoToProducts(OrderRequestDto orderRequestDto) {
+        if ( orderRequestDto == null ) {
+            return null;
+        }
+
+        Products products = new Products();
+
+        products.setId( orderRequestDto.getProductId() );
+
+        return products;
+    }
+
+    protected Users orderRequestDtoToUsers(OrderRequestDto orderRequestDto) {
+        if ( orderRequestDto == null ) {
+            return null;
+        }
+
+        Users users = new Users();
+
+        users.setId( orderRequestDto.getUserId() );
+
+        return users;
+    }
+
+    protected Address addressDtoToAddress(AddressDto addressDto) {
+        if ( addressDto == null ) {
+            return null;
+        }
+
+        Address address = new Address();
+
+        address.setAddress( addressDto.getAddress() );
+        address.setCity( addressDto.getCity() );
+        address.setState( addressDto.getState() );
+        address.setPostalCode( addressDto.getPostalCode() );
+        address.setCountry( addressDto.getCountry() );
+
+        return address;
+    }
+
+    protected ProductResponseDto productsToProductResponseDto(Products products) {
+        if ( products == null ) {
+            return null;
+        }
+
+        ProductResponseDto productResponseDto = new ProductResponseDto();
+
+        productResponseDto.setProductName( products.getProductName() );
+        productResponseDto.setPrice( products.getPrice() );
+
+        return productResponseDto;
+    }
+
+    protected UserResponseDto usersToUserResponseDto(Users users) {
+        if ( users == null ) {
+            return null;
+        }
+
+        UserResponseDto userResponseDto = new UserResponseDto();
+
+        userResponseDto.setId( users.getId() );
+        userResponseDto.setFirstName( users.getFirstName() );
+        userResponseDto.setLastName( users.getLastName() );
+        userResponseDto.setPhoneNumber( users.getPhoneNumber() );
+        userResponseDto.setEmail( users.getEmail() );
+        userResponseDto.setCreatedAt( users.getCreatedAt() );
+
+        return userResponseDto;
+    }
+
+    protected AddressDto addressToAddressDto(Address address) {
+        if ( address == null ) {
+            return null;
+        }
+
+        AddressDto addressDto = new AddressDto();
+
+        addressDto.setAddress( address.getAddress() );
+        addressDto.setCity( address.getCity() );
+        addressDto.setState( address.getState() );
+        addressDto.setPostalCode( address.getPostalCode() );
+        addressDto.setCountry( address.getCountry() );
+
+        return addressDto;
+    }
+
+    protected void addressDtoToAddress1(AddressDto addressDto, Address mappingTarget) {
+        if ( addressDto == null ) {
+            return;
+        }
+
+        mappingTarget.setAddress( addressDto.getAddress() );
+        mappingTarget.setCity( addressDto.getCity() );
+        mappingTarget.setState( addressDto.getState() );
+        mappingTarget.setPostalCode( addressDto.getPostalCode() );
+        mappingTarget.setCountry( addressDto.getCountry() );
+    }
+}

@@ -3,15 +3,14 @@ package com.User_and_Order_Management_Service.Controllers;
 
 import com.User_and_Order_Management_Service.RequestDtos.UserRequestDto;
 import com.User_and_Order_Management_Service.ResponseBuilder.ApiResponse;
+import com.User_and_Order_Management_Service.ResponseBuilder.PageResponse;
 import com.User_and_Order_Management_Service.ResponseDtos.UserResponseDto;
-import com.User_and_Order_Management_Service.UserService.UserService;
+import com.User_and_Order_Management_Service.Services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.User_and_Order_Management_Service.ResponseBuilder.responseBuilder;
-
-import java.util.List;
 
 import static com.User_and_Order_Management_Service.constants.UserConfigurationConstants.*;
 
@@ -30,8 +29,8 @@ public class UsersController {
     }
 
     @GetMapping("/users")
-    public ResponseEntity<ApiResponse<List<UserResponseDto>>> getAllUsers(){
-        List<UserResponseDto> allUsers = userService.getAllUsers();
+    public ResponseEntity<ApiResponse<PageResponse<UserResponseDto>>> getAllUsers(@RequestParam int page, @RequestParam int size){
+        PageResponse<UserResponseDto> allUsers = userService.getAllUsers(page, size);
         return responseBuilder.success(allUsers,RETRIEVE_USERS,HttpStatus.OK);
     }
 
