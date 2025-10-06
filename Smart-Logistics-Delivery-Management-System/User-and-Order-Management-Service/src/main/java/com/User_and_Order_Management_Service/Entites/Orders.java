@@ -6,8 +6,8 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 
-@Entity
 @Data
+@Entity
 @Table(name = "order_tb")
 public class Orders {
 
@@ -21,7 +21,7 @@ public class Orders {
     private Users user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id", nullable = false)
+    @JoinColumn(name = "product_id",  referencedColumnName = "id", nullable = false)
     private Products product;
 
     private Integer quantity;

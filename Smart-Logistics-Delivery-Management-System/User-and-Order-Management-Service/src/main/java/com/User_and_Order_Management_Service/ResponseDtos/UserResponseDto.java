@@ -13,6 +13,6 @@ public class UserResponseDto {
     private String lastName;
     private String phoneNumber;
     private String email;
-    @JsonFormat(pattern = "MM-dd-yyyy HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
     private LocalDateTime createdAt;
 }

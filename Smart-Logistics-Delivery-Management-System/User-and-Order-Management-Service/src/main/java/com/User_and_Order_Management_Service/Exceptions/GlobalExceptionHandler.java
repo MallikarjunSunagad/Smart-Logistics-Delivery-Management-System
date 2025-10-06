@@ -24,4 +24,10 @@ public class GlobalExceptionHandler {
         log.error(exception.getMessage(),exception);
         return responseBuilder.error(exception);
     }
+
+    @ExceptionHandler(BadRequestException.class)
+    public @ResponseBody ResponseEntity<ApiResponse<Object>> handleBadRequestException(BadRequestException e){
+        log.error(e.getMessage(),e);
+        return responseBuilder.error(e);
+    }
 }

@@ -1,4 +1,4 @@
-package com.User_and_Order_Management_Service.RequestDtos;
+package com.User_and_Order_Management_Service.ResponseDtos;
 
 import lombok.Data;
 
